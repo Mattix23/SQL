@@ -1,0 +1,35 @@
+--Create a store database for different snacks and popularity on a scale of 1 to 5(5 beign very popular)
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, price INTEGER, popularity INTEGER);
+INSERT INTO store VALUES (1, "snickers", 2.95, 4);
+INSERT INTO store VALUES (2, "hersheys", 3.50, 5);
+INSERT INTO store VALUES (3, "threemuskateers", 2.35, 2);
+INSERT INTO store VALUES (4, "reeses", 3.10, 5);
+INSERT INTO store VALUES (5, "crunch", 2.50, 3);
+INSERT INTO store VALUES (6, "twix", 2.50, 3);
+INSERT INTO store VALUES (7, "m&ms", 2.50, 3);
+INSERT INTO store VALUES (8, "milkyway", 2.50, 3);
+INSERT INTO store VALUES (9, "kitkat", 3.00, 5);
+INSERT INTO store VALUES (10, "butterfinger", 1.99, 2);
+INSERT INTO store VALUES (11, "almondjoy", 1.50, 1);
+INSERT INTO store VALUES (12, "babyruth", 2.20, 3);
+INSERT INTO store VALUES (13, "payday", 2.99, 4);
+INSERT INTO store VALUES (14, "galaxy", 2.99, 4);
+INSERT INTO store VALUES (15, "aero", 1.99, 1);
+
+-- display the database ordered by price
+SELECT * FROM store
+ORDER BY price desc;
+
+-- display the database ordered by popularity
+SELECT * FROM store
+ORDER BY popularity desc;
+
+-- what is the avg price of items with the most popularity?
+SELECT AVG(price) FROM store WHERE popularity='5';
+
+-- what are the least popular items?
+SELECT item, price, popularity
+FROM store
+ORDER BY popularity asc
+limit 3;
