@@ -1,0 +1,52 @@
+/* Create table about the people and what they do here */
+--Table 1: Celebrities name and jobs
+--Table 2: contains movies and songs that were released or included the celebrities
+
+--Goal: join both tables in order to see what releases celebrities are responsible for.
+
+CREATE TABLE famous_people (id INTEGER PRIMARY KEY, fullname TEXT, job TEXT);
+INSERT INTO famous_people VALUES (1, "Tom Holland", "Actor");
+INSERT INTO famous_people VALUES (2, "Robert Downey Jr", "Actor");
+INSERT INTO famous_people VALUES (3, "Chris Evans", "Actor");
+INSERT INTO famous_people VALUES (4, "Bad Bunny", "Artist");
+INSERT INTO famous_people VALUES (5, "50 Cent", "Artist");
+INSERT INTO famous_people VALUES (6, "Atmosphere", "Artist");
+INSERT INTO famous_people VALUES (7, "Brie Larson", "Actor");
+INSERT INTO famous_people VALUES (8, "Hugh Jackman", "Actor");
+INSERT INTO famous_people VALUES (9, "Beyonce", "Artist");
+INSERT INTO famous_people VALUES (10, "Lady Gaga", "Artist");
+
+CREATE TABLE releases (id INTEGER PRIMARY KEY, title TEXT, release_year INTEGER, creator_id INTEGER);
+INSERT INTO releases VALUES (1, "Spider-Man Homecoming", 2017, 1);
+INSERT INTO releases VALUES (2, "Captain America", 2011, 3);
+INSERT INTO releases VALUES (3, "Iron Man 3 ", 2013, 2);
+INSERT INTO releases VALUES (4, "Lemonade", 2016, 9);
+INSERT INTO releases VALUES (5, "Moscow Mule", 2022, 4);
+INSERT INTO releases VALUES (6, "Sunshine", 2007, 6);
+INSERT INTO releases VALUES (7, "Captain Marvel", 2019, 7);
+INSERT INTO releases VALUES (8, "Many Men", 2003, 5);
+INSERT INTO releases VALUES (9, "Logan", 2017, 8);
+INSERT INTO releases VALUES (10, "Bad Romance", 2009, 10);
+
+SELECT * FROM releases;
+
+--Select actors who released movies after year 2015
+SELECT fullname, job as Occupation, title as title_of_movie FROM famous_people
+LEFT OUTER JOIN releases
+ON famous_people.id=releases.creator_id
+WHERE job = "Actor" AND release_year > 2015;
+
+--Select artists who released music before 2010
+
+SELECT fullname, job as Occupation, title as Song_title 
+FROM famous_people
+LEFT OUTER JOIN releases
+ON famous_people.id=releases.creator_id
+WHERE job = "Artist" AND release_year < 2010;
+
+--list celebrities next to their job, movie or song, and the release year
+
+SELECT fullname, job as Occupation, title as Song_or_Movie, release_year 
+FROM famous_people
+LEFT OUTER JOIN releases
+ON famous_people.id=releases.creator_id;
