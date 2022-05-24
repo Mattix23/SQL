@@ -1,0 +1,38 @@
+/* What does the app's SQL look like? */
+--In this project, I am creating a simple table that shows the ranks of my friends and myself in the competitive tactical first person shooter VALORANT by Riot Games. I will be using the UPDATE and DELETE statements to correspond with this Khan Academy project!
+
+
+CREATE TABLE valorant_rank (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, rank TEXT, rr INTEGER);
+--Table showing the ranks
+INSERT INTO valorant_rank (name, rank, rr)
+    VALUES ("Mattix", "Immortal 1", 29);
+INSERT INTO valorant_rank (name, rank, rr)
+    VALUES ("solace", "Dimaond 3", 45);
+INSERT INTO valorant_rank (name, rank, rr)
+    VALUES ("Gus", "Bronze 3", 15);
+INSERT INTO valorant_rank (name, rank, rr)
+    VALUES ("Koruptz", "Silver 2", 57);
+INSERT INTO valorant_rank (name, rank, rr)
+    VALUES ("Nightlife", "Silver 2", 38);
+INSERT INTO valorant_rank (name, rank, rr)
+    VALUES ("Flux", "Platinum 1", 88);
+INSERT INTO valorant_rank (name, rank, rr)
+    VALUES ("Johnny", "Iron 2", 22);
+SELECT * FROM valorant_rank;
+
+--Next I would track my friend Gus as he ranked up from Bronze 3 to Silver 1, and update that accordingly in the table
+UPDATE valorant_rank SET rank ="Silver 1"
+WHERE id = 3;
+
+SELECT * FROM valorant_rank;
+
+UPDATE valorant_rank SET rr = 0
+WHERE id=3;
+
+SELECT * FROM valorant_rank;
+
+--Next, Johnny no longer plays Valorant. I will delete his rank information from the table
+DELETE FROM valorant_rank
+WHERE id=7;
+
+SELECT * FROM valorant_rank;
